@@ -17,6 +17,14 @@ class DeepThoughtTravisPluginTest < MiniTest::Unit::TestCase
     assert @travis_plugin.endpoint == 'endpoint'
   end
 
+  def test_travis_plugin_is_branch_green_success_with_access_token
+    @travis_plugin.setup?({"CI_SERVICE_ENDPOINT" => "endpoint", "CI_SERVICE_ACCESS_TOKEN" => "123"})
+    json = stub(:body => '{"branch": {"state": "passing"}}')
+    HTTParty.expects(:get).with("#{@travis_plugin.endpoint}/repos/app/branches/branch?access_token=123").returns(json)
+
+    assert @travis_plugin.is_branch_green?('app', 'branch', '')
+  end
+
   def test_travis_plugin_is_branch_green_success
     # successful test with CI service (I suggest stubbing the payload and mocking the API call)
 
