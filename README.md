@@ -1,4 +1,5 @@
 # Deep Thought Travis CI Plugin
+[![Build Status](https://travis-ci.org/Aaron1011/deep_thought-travis_plugin.png?branch=master)](https://travis-ci.org/Aaron1011/deep_thought-travis_plugin)
 
 A Deep Thought plugin for Travis CI.
 
